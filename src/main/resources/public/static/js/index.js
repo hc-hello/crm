@@ -3,11 +3,11 @@ function login() {
     var userPwd=$("input[name='password']").val();
 
     if(isEmpty(userName)){
-        alert("请输入用户名!");
+        $("#msg").text("用户名不能为空")
         return;
     }
     if(isEmpty(userPwd)){
-        alert("请输入密码!");
+        $("#msg").text("用户密码不能为空")
         return;
     }
 
@@ -23,9 +23,6 @@ function login() {
             console.log(data);
             if(data.code==200){
                 var result =data.result;
-                /**
-                 * 写入cookie 到浏览器
-                 */
                 $.cookie("userIdStr",result.userIdStr);
                 $.cookie("userName",result.userName);
                 $.cookie("trueName",result.trueName);
@@ -36,7 +33,8 @@ function login() {
         }
     })
 
+}
 
-
-
+function openregisterform() {
+    $(".register-form").dialog("open").dialog("setTitle","用户注册");
 }

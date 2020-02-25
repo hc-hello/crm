@@ -56,10 +56,11 @@
     <div class="form-actions">
         <button onclick="login()" class="btn btn-success uppercase btn-xs btn-block">登录</button>
     </div>
+    <span style="color: red" id="msg"></span>
 
     <div class="create-account">
         <p>
-            <a href="javascript:;" id="register-btn" class="uppercase">注册</a>
+            <a href="javascript:openregisterform()" id="register-btn" class="uppercase">注册</a>
         </p>
     </div>
     <!-- END LOGIN FORM -->
