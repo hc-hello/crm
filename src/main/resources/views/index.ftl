@@ -66,7 +66,7 @@
     <!-- END LOGIN FORM -->
 
     <!-- BEGIN REGISTRATION FORM -->
-    <form class="register-form" action="index.html" method="post">
+    <form class="register-form" id="register" action="index.html" method="post">
         <h3>注册</h3>
         <p class="hint">
             输入个人信息

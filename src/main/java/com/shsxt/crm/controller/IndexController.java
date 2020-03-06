@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class IndexController extends BaseController {
@@ -23,9 +25,12 @@ public class IndexController extends BaseController {
     }
 
     @RequestMapping("main")
-    public String main(HttpServletRequest request){
+    public String main(HttpServletRequest request, HttpServletResponse response){
         int userId = LoginUserUtil.releaseUserIdFromCookie(request);
         User user = userService.selectByPrimaryKey(userId);
+       /* Cookie cookie=new Cookie("name1","zhangsan");
+        cookie.setMaxAge(3*24*60*60);
+        response.addCookie(cookie);*/
         request.setAttribute("user",user);
         return "main";
     }

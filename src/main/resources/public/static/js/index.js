@@ -3,11 +3,11 @@ function login() {
     var userPwd=$("input[name='password']").val();
 
     if(isEmpty(userName)){
-        $("#msg").text("用户名不能为空")
+        $("#msg").text("用户名不能为空");
         return;
     }
     if(isEmpty(userPwd)){
-        $("#msg").text("用户密码不能为空")
+        $("#msg").text("用户密码不能为空");
         return;
     }
 
@@ -23,12 +23,14 @@ function login() {
             console.log(data);
             if(data.code==200){
                 var result =data.result;
-                $.cookie("userIdStr",result.userIdStr);
-                $.cookie("userName",result.userName);
-                $.cookie("trueName",result.trueName);
+                $.cookie("userIdStr",result.userIdStr,3*24*60*60);
+                $.cookie("userName",result.userName,3*24*60*60);
+                $.cookie("trueName",result.trueName,3*24*60*60);
+
                 window.location.href=ctx+"/main";
             }else{
-                alert(data.msg);
+                //alert(data.msg);
+                $("#msg").text(data.msg);
             }
         }
     })
@@ -36,5 +38,5 @@ function login() {
 }
 
 function openregisterform() {
-    $(".register-form").dialog("open").dialog("setTitle","用户注册");
+    $("#register").dialog("open").dialog("setTitle","用户注册");
 }

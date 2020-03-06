@@ -6,6 +6,7 @@ import com.shsxt.crm.utils.LoginUserUtil;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,10 +22,16 @@ public class NoLoginInterceptor extends HandlerInterceptorAdapter {
             response.sendRedirect(request.getContextPath()+"/index");
             return false;
         }*/
+        System.out.println(userId);
         if(userId==0 || null==userService.selectByPrimaryKey(userId)){
             throw new NoLoginException();
         }
-
-        return super.preHandle(request, response, handler);
+        Cookie[] cookies = request.getCookies();
+        if (cookies!=null && cookies.length>0){
+            for (Cookie cookie : cookies) {
+                System.out.println(cookie.getName());
+            }
+        }
+        return true;
     }
 }
